@@ -8,9 +8,6 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class ShoppingCartTest {
-    //https://sharelane.com/cgi-bin/register.py?page=2&zip_code=12345&
-    // first_name=sda&last_name=d2das&email=54535543543%40yt.com&password1=34234a&password2=34234a
-    //<a href="./shopping_cart.py"><img src="../images/shopping_cart.gif" border="0">Shopping Cart</a>
     @Test
     public void checkDiscount0() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
@@ -27,10 +24,10 @@ public class ShoppingCartTest {
         Thread.sleep(5000);
         driver.get("https://sharelane.com/cgi-bin/shopping_cart.py");
         driver.findElement(By.name("q")).clear();
-        driver.findElement(By.name("q")).sendKeys("1000");
+        driver.findElement(By.name("q")).sendKeys("19");
         driver.findElement(By.cssSelector("[value=Update]")).click();
         Thread.sleep(5000);
-        String discountUSD = driver.findElement(By.xpath("/html/body/center/table/tbody/tr[5]/td/table/tbody/tr[2]/td[6]")).getText();
+        String discountUSD = driver.findElement(By.xpath("//td[contains(text(),'Discount')]/following-sibling::td")).getText();
         String totalUSD = driver.findElement(By.xpath("//table/" +
                 "tbody/tr[5]/td/table/tbody/tr[2]/td[7]")).getText();
         String discountPercent = driver.findElement(By.xpath(
@@ -38,7 +35,7 @@ public class ShoppingCartTest {
         Assert.assertEquals(discountPercent, "6");
         Assert.assertEquals(discountUSD, "600");
         Assert.assertEquals(totalUSD, "10600");
-//        driver.quit();
+        driver.quit();
 
 
     }
