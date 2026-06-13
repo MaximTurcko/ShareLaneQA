@@ -18,7 +18,7 @@ public class SignUpTest {
      */
 
     @Test
-    public void checkSingUpValidData(){
+    public void checkSingUpValidData() {
         WebDriver browser = new ChromeDriver();
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         browser.get("https://sharelane.com/cgi-bin/register.py");
@@ -33,7 +33,7 @@ public class SignUpTest {
         browser.findElement(By.name("password2")).sendKeys("1234a");
         browser.findElement(By.cssSelector("[value=Register]")).click();
         actualErrorMessage = browser.findElement(By.className("confirmation_message")).getText();
-        Assert.assertEquals(actualErrorMessage,"Account is created!");
+        Assert.assertEquals(actualErrorMessage, "Account is created!");
         browser.quit();
     }
 }
